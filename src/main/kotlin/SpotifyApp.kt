@@ -1,26 +1,38 @@
 import enums.SpotifyMenu
-import features.CredentialFeature
-import java.util.Scanner
+import feature.CredentialFeature
+import java.util.*
 
 private val scanner = Scanner(System.`in`)
 private lateinit var credentialFeature: CredentialFeature
+
 fun main() {
+
     setup()
-    println("Selamat datang di Spotify")
+    welcome()
+}
+
+fun welcome() {
+    println("Selamat Datang di Spotify")
     println("1. Login")
-    println("2. View Profile")
-    println("Pilih menu: ")
-    when (scanner.nextLine()) {
+    println("2. Profile")
+    print("Pilih menu: ")
+
+    val selectedMenu = scanner.nextLine()
+
+    when (selectedMenu) {
         SpotifyMenu.LOGIN.id -> {
+            println(SpotifyMenu.LOGIN.desc)
             credentialFeature.login()
         }
         SpotifyMenu.PROFILE.id -> {
-            println(SpotifyMenu.PROFILE.message)
+            println(SpotifyMenu.PROFILE.desc)
+            credentialFeature.getProfile()
         }
-        else -> println("Maaf menu yang dipilih tidak ada")
+        else -> println("Input Tidak Valid !")
     }
+    welcome()
 }
 
 fun setup(){
-    credentialFeature= CredentialFeature(scanner)
+    credentialFeature = CredentialFeature(scanner)
 }

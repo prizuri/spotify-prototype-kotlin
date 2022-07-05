@@ -3,27 +3,20 @@ package database
 import model.UserData
 
 class UserDatabaseImpl : UserDatabase {
-    private val userList = listOf(
-        UserData(1, "Pri", "pri1", "123", "Medan"),
-        UserData(2, "im", "im1", "123", "Medan")
+
+    private val userList = mutableListOf(
+        UserData(1, "pri", "prizurih", "123", "medan" ),
+        UserData(2, "dev", "wxa", "123", "kalimantan"),
+        UserData(3, "hahah", "kawi", "123", "sulawesi"),
     )
 
     override fun findAllUser(): List<UserData> = userList
 
+    override fun findUser(username: String): UserData? =userList.find {
+        it.username.equals(username,true)
+    }
 
-    override fun findUser(username:String): UserData? {
-//        for (position in 0..userList.size){
-//            val selectedUserToCheck = userList[position]
-//            if(selectedUserToCheck.username.equals(username, true)){
-//                return selectedUserToCheck
-//            }
-//        }
-//        return null
-        val selectedUser = userList.forEach{
-            if(it.username.equals(username, true)){
-                return it
-            }
-        }
-        return selectedUser
+    override fun registerUser(data: UserData) {
+        userList.add(data)
     }
 }

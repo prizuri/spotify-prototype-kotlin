@@ -2,8 +2,8 @@ package model
 
 data class UserData(
     val id: Int,
-    val name: String? = null,
-    val username: String? = null,
-    val password: String? = null,
+    val name: String,
+    val username: String,
+    val password: String,
     val address: String? = null
 )
